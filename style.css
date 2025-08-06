@@ -1,0 +1,151 @@
+/* Custom styles for the Inter font */
+body {
+    font-family: "Inter", sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    display: flex; /* Use flexbox for overall page centering */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0; /* Default light grey background */
+    overflow: hidden; /* Prevent scrollbars */
+    transition: background-color 0.3s ease; /* Smooth background transition */
+    perspective: 1000px; /* Establishes a 3D viewing context for the body */
+    position: relative; /* Needed for absolute positioning of toggle and version */
+}
+
+/* Dark mode background for the body */
+html.dark body {
+    background-color: #1b1f27; /* Dark background for dark mode */
+}
+
+/* Styling for the main panel */
+#movablePanel {
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease-out;
+    transform-style: preserve-3d; /* Important for 3D effects */
+    background-color: #ffffff; /* Panel background set to white in light mode */
+    border: 2px solid #46494e; /* Border for light mode */
+    will-change: transform; /* Performance hint for 3D transforms */
+    transform: scale(1); /* Ensure initial scale is 1, JS will update */
+}
+
+/* Panel hover effect (shadow only, transform handled by JS) */
+#movablePanel:hover {
+    box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.3), 0 6px 10px -3px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode styles for the panel */
+html.dark #movablePanel {
+    background-color: #2d3748; /* Dark background for the panel */
+    color: #e2e8f0; /* Light text color */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.25);
+    border: 2px solid #000000; /* Darker border for dark mode */
+}
+
+/* Dark mode panel hover effect */
+html.dark #movablePanel:hover {
+    box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.7), 0 6px 10px -3px rgba(0, 0, 0, 0.35);
+}
+
+/* Dark mode text colors within the panel */
+html.dark #movablePanel h1 {
+    color: #f7fafc;
+}
+
+html.dark #movablePanel p {
+    color: #cbd5e0;
+}
+
+/* Styles for the "Our Games!" button hover/active effects */
+#myButton {
+    transition: transform 0.3s ease-in-out; /* Smooth transition for scale */
+    transform: scale(1); /* Ensure initial transform is scale(1) */
+    will-change: transform; /* Performance hint */
+}
+
+#myButton:hover {
+    transform: scale(1.25); /* Button becomes bigger on hover */
+}
+
+#myButton:active {
+    transform: scale(0.90); /* Button becomes smaller on click/tap */
+}
+
+/* Styles for the theme toggle button hover/active effects */
+#themeToggle {
+    transition: transform 0.3s ease-in-out; /* Smooth transition for scale */
+    transform: scale(1); /* Ensure initial transform is scale(1) */
+    will-change: transform; /* Performance hint */
+}
+
+#themeToggle:hover {
+    transform: scale(1.15); /* Slightly bigger on hover */
+}
+
+#themeToggle:active {
+    transform: scale(0.95); /* Slightly smaller on click/tap */
+}
+
+/* Snow effect CSS */
+.snowflake {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: snowfall linear infinite;
+    pointer-events: none; /* Allow clicks to pass through snowflakes */
+    z-index: -1; /* Ensure snowflakes are behind other content */
+}
+
+/* Different sizes for snowflakes */
+.snowflake:nth-child(even) {
+    width: 3px;
+    height: 3px;
+    animation-duration: 10s;
+    animation-delay: -2s;
+}
+.snowflake:nth-child(odd) {
+    width: 5px;
+    height: 5px;
+    animation-duration: 15s;
+    animation-delay: -5s;
+}
+.snowflake:nth-child(3n) {
+    width: 4px;
+    height: 4px;
+    animation-duration: 12s;
+    animation-delay: -7s;
+}
+.snowflake:nth-child(5n) {
+    width: 6px;
+    height: 6px;
+    animation-duration: 18s;
+    animation-delay: -10s;
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Hide snow by default, show only when dark mode is active */
+#snowContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    display: none; /* Hidden by default */
+}
+
+html.dark #snowContainer {
+    display: block; /* Shown only in dark mode */
+}
